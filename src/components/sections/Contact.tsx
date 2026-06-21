@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, MapPin, Check, Loader2 } from "lucide-react";
+import { Send, Mail, MapPin, Check, Loader2, AlertCircle } from "lucide-react";
 import confetti from "canvas-confetti";
 
 const GithubIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
@@ -20,53 +20,77 @@ const LinkedinIcon = ({ size = 18, className = "" }: { size?: number; className?
   </svg>
 );
 
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+type Status = "idle" | "submitting" | "success" | "error";
+
+const EMPTY_FORM: FormData = { name: "", email: "", subject: "", message: "" };
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formData, setFormData] = useState<FormData>(EMPTY_FORM);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setErrorMessage("");
+
+    // Client-side validation
+    const { name, email, subject, message } = formData;
+    if (!name.trim() || !email.trim() || !subject.trim() || !message.trim()) {
+      setErrorMessage("Please fill in all fields before submitting.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
     setStatus("submitting");
 
-    // Mock API request delay
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), subject: subject.trim(), message: message.trim() }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
       setStatus("success");
-      
-      // Trigger canvas-confetti celebration
+      setFormData(EMPTY_FORM);
+
       confetti({
         particleCount: 120,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ["#00f2fe", "#8b5cf6", "#10b981"]
+        colors: ["#00f2fe", "#8b5cf6", "#10b981"],
       });
 
-      // Reset form data after success
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-
-      // Return status to idle after 5 seconds
-      setTimeout(() => {
-        setStatus("idle");
-      }, 5000);
-    }, 1500);
+      setTimeout(() => setStatus("idle"), 6000);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Failed to send message.";
+      setErrorMessage(msg);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 6000);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const isDisabled = status === "submitting" || status === "success";
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden bg-zinc-950/40">
@@ -116,8 +140,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <span className="text-[10px] font-extrabold uppercase tracking-widest text-zinc-500">Email Address</span>
-                    <a href="mailto:contact@gulshankumar.com" className="text-zinc-300 font-semibold block text-sm hover:text-cyan-400 transition-colors mt-0.5">
-                      contact@gulshankumar.com
+                    <a href="mailto:gulshankumaritggv@gmail.com" className="text-zinc-300 font-semibold block text-sm hover:text-cyan-400 transition-colors mt-0.5">
+                      gulshankumaritggv@gmail.com
                     </a>
                   </div>
                 </div>
@@ -136,12 +160,12 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Socials & Footnote */}
+            {/* Socials */}
             <div className="mt-12 lg:mt-0">
               <span className="text-xs font-extrabold uppercase tracking-widest text-zinc-500 block mb-4">Social Links</span>
               <div className="flex gap-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/gulshanverse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-zinc-900 border border-zinc-800/80 rounded-xl text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-105 transition-all duration-300"
@@ -150,7 +174,7 @@ export default function Contact() {
                   <GithubIcon size={20} />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/gulshanverse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-zinc-900 border border-zinc-800/80 rounded-xl text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-105 transition-all duration-300"
@@ -170,7 +194,7 @@ export default function Contact() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="glass-panel border-zinc-800/60 p-6 sm:p-8 rounded-2xl flex flex-col gap-6">
+            <form onSubmit={handleSubmit} className="glass-panel border-zinc-800/60 p-6 sm:p-8 rounded-2xl flex flex-col gap-6" noValidate>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {/* Name */}
                 <div className="flex flex-col gap-2">
@@ -184,8 +208,10 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    maxLength={100}
                     placeholder="Enter your name"
-                    className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all"
+                    disabled={isDisabled}
+                    className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
@@ -202,7 +228,8 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Enter your email"
-                    className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all"
+                    disabled={isDisabled}
+                    className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
               </div>
@@ -219,8 +246,10 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
+                  maxLength={200}
                   placeholder="Enter the subject"
-                  className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all"
+                  disabled={isDisabled}
+                  className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -236,15 +265,25 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
+                  maxLength={5000}
                   placeholder="Tell me about your project or role..."
-                  className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all resize-none"
+                  disabled={isDisabled}
+                  className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
+
+              {/* Error notification */}
+              {status === "error" && errorMessage && (
+                <div className="flex items-start gap-3 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm font-medium">
+                  <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
 
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={status === "submitting" || status === "success"}
+                disabled={isDisabled}
                 className={`py-3.5 px-6 rounded-xl font-bold flex items-center justify-center gap-2 tracking-wide transition-all duration-300 ${
                   status === "success"
                     ? "bg-emerald-500 text-zinc-950 cursor-default"
