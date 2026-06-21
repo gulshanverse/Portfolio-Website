@@ -96,7 +96,7 @@ export default function Footer() {
 
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/in/gulshanverse"
+              href="https://www.linkedin.com/in/gulshan-kumar-yv"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-zinc-900/65 hover:bg-zinc-800/80 border border-zinc-800/80 hover:border-purple-500/30 rounded-xl text-zinc-400 hover:text-purple-400 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-300"

@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
+import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Education from "@/components/sections/Education";
@@ -39,6 +40,7 @@ export default function Home() {
           {/* Section contents */}
           <main className="relative z-10 max-w-7xl mx-auto">
             <Hero />
+            <FeaturedProjects />
             <About />
             <Skills />
             <Education />

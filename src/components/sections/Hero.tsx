@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { Download, ArrowRight, Mail, Cpu } from "lucide-react";
+import { Download, ArrowRight, Mail } from "lucide-react";
 import Image from "next/image";
 
 const GithubIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
@@ -25,28 +25,28 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
         delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring" as const, stiffness: 100, damping: 15 },
+      transition: { type: "spring", stiffness: 100, damping: 18 },
     },
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-zinc-950/20">
       {/* Background visual helpers */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10 w-full">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center z-10 w-full relative">
         {/* Left side text and actions */}
         <motion.div
           className="lg:col-span-7 flex flex-col justify-center"
@@ -54,20 +54,28 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          {/* Badge */}
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-cyan-500/30 text-cyan-400 text-xs font-semibold tracking-wider uppercase mb-6 self-start">
-            <Cpu size={14} className="animate-spin-slow" /> GDGC AI/ML Team Member
+          {/* Recruiter Active Status Badge */}
+          <motion.div 
+            variants={itemVariants} 
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-500/5 border border-cyan-500/20 text-cyan-400 text-xs font-bold tracking-wider uppercase mb-6 self-start shadow-[0_0_15px_rgba(6,182,212,0.05)]"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            </span>
+            Open to AI/ML Internship Opportunities
           </motion.div>
 
           {/* Heading */}
           <motion.h1
             variants={itemVariants}
-            className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]"
+            className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.15]"
           >
-            Hi, I&apos;m <span className="text-gradient-cyan">Gulshan Kumar</span>
+            Gulshan Kumar
             <br />
-            <span className="text-zinc-400">Designing the Future of </span>
-            <span className="text-gradient-purple">AI & ML Systems</span>
+            <span className="text-zinc-400 text-3xl sm:text-4xl md:text-5xl font-bold block mt-3">
+              AI/ML Engineer <span className="text-zinc-600 font-light">|</span> Full Stack Developer
+            </span>
           </motion.h1>
 
           {/* Intro Description */}
@@ -75,53 +83,62 @@ export default function Hero() {
             variants={itemVariants}
             className="text-base sm:text-lg text-zinc-400 max-w-xl mb-8 leading-relaxed font-normal"
           >
-            Developer focused on deep learning neural architectures, scalable web applications, and high-performance algorithms. Creator of <span className="text-cyan-400">VeriLex AI</span> and <span className="text-purple-400">NHIDE 2026</span>.
+            Building intelligent systems, scalable applications, and practical AI solutions. Specialize in deep learning neural models and robust software architecture.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4 items-center mb-8">
             <a
-              href="#contact"
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-500 text-zinc-950 font-bold hover:bg-cyan-400 hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+              href="#featured-projects"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-cyan-500 text-zinc-950 font-bold hover:bg-cyan-400 hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.2)] active:scale-[0.98]"
             >
-              Let&apos;s Connect <ArrowRight size={16} />
+              View Projects <ArrowRight size={16} />
             </a>
 
             <a
-              href="#"
+              href="/Gulshan_Kumar_Resume.pdf"
               download="Gulshan_Kumar_Resume.pdf"
-              className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-800 glass-panel text-white font-semibold hover:border-cyan-500/40 hover:text-cyan-400 hover:scale-105 transition-all duration-300"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-800 bg-zinc-900/60 text-white font-bold hover:border-zinc-700 hover:bg-zinc-900 hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]"
             >
-              Download CV <Download size={16} />
+              Download Resume <Download size={16} />
+            </a>
+
+            <a
+              href="#contact"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-800/80 bg-zinc-950/20 text-zinc-300 font-bold hover:text-white hover:border-zinc-700 hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]"
+            >
+              Contact Me <Mail size={16} />
             </a>
           </motion.div>
 
           {/* Social Links */}
-          <motion.div variants={itemVariants} className="flex items-center gap-5">
-            <span className="text-xs tracking-widest text-zinc-500 uppercase font-semibold">Follow Me:</span>
+          <motion.div variants={itemVariants} className="flex items-center gap-5 pt-4 border-t border-zinc-900/60 max-w-xl">
+            <span className="text-xs tracking-widest text-zinc-500 uppercase font-bold">Social handles:</span>
             <div className="flex gap-3">
               <a
                 href="https://github.com/gulshanverse"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full border border-zinc-800/60 glass-panel text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-110 transition-all duration-300"
-                aria-label="GitHub"
+                className="p-2.5 rounded-xl border border-zinc-800/80 bg-zinc-900/40 text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/25 hover:scale-105 transition-all duration-300"
+                aria-label="GitHub Profile"
               >
                 <GithubIcon size={18} />
               </a>
               <a
-                href="https://www.linkedin.com/in/gulshanverse"
+                href="https://www.linkedin.com/in/gulshan-kumar-yv"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full border border-zinc-800/60 glass-panel text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-110 transition-all duration-300"
-                aria-label="LinkedIn"
+                className="p-2.5 rounded-xl border border-zinc-800/80 bg-zinc-900/40 text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/25 hover:scale-105 transition-all duration-300"
+                aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon size={18} />
               </a>
               <a
                 href="mailto:gulshankumaritggv@gmail.com"
-                className="p-2.5 rounded-full border border-zinc-800/60 glass-panel text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-110 transition-all duration-300"
-                aria-label="Email"
+                className="p-2.5 rounded-xl border border-zinc-800/80 bg-zinc-900/40 text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/25 hover:scale-105 transition-all duration-300"
+                aria-label="Send Email"
               >
                 <Mail size={18} />
               </a>
@@ -129,43 +146,47 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right side Profile Image */}
+        {/* Right side Profile Image Card */}
         <motion.div
           className="lg:col-span-5 flex justify-center items-center relative"
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, type: "spring" as const }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
         >
-          {/* Outer glow effect */}
-          <div className="absolute w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-tr from-cyan-500/10 to-purple-500/10 rounded-full blur-[80px] opacity-40 pointer-events-none animate-pulse-slow" />
+          {/* Subtle glow effect */}
+          <div className="absolute w-72 h-72 bg-gradient-to-tr from-cyan-500/10 to-purple-500/10 rounded-full blur-[90px] opacity-30 pointer-events-none" />
 
-          {/* Interactive Profile Card Wrapper */}
+          {/* Premium Card Frame */}
           <motion.div 
-            className="relative group p-[4px] rounded-full bg-gradient-to-tr from-cyan-400 via-purple-500 to-emerald-400 shadow-[0_0_50px_rgba(6,182,212,0.15)] hover:shadow-[0_0_60px_rgba(139,92,246,0.3)] transition-all duration-500"
-            whileHover={{ scale: 1.03 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="relative group p-[1px] rounded-2xl bg-gradient-to-tr from-zinc-800 via-zinc-800 to-zinc-700 hover:from-cyan-500/50 hover:to-purple-500/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-700 w-full max-w-[320px] aspect-square"
+            whileHover={{ y: -4 }}
           >
             {/* Inner frame */}
-            <div className="bg-zinc-950 p-[4px] rounded-full overflow-hidden">
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden">
-                <Image
-                  src="/profile.jpg"
-                  alt="Gulshan Kumar"
-                  width={350}
-                  height={350}
-                  priority
-                  className="rounded-full object-cover object-center w-full h-full scale-[1.02] group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
-                  quality={95}
-                />
+            <div className="bg-zinc-950 p-3 rounded-[15px] overflow-hidden w-full h-full relative">
+              <Image
+                src="/profile.jpg"
+                alt="Gulshan Kumar"
+                width={320}
+                height={320}
+                priority
+                className="rounded-xl object-cover object-center w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700 scale-[1.01]"
+                sizes="(max-width: 640px) 256px, 300px"
+                quality={95}
+              />
+              
+              {/* Subtle glass overlay corner tag */}
+              <div className="absolute bottom-6 left-6 right-6 px-4 py-2.5 bg-zinc-950/75 backdrop-blur-md border border-zinc-800/80 rounded-xl flex items-center justify-between text-[11px] font-bold text-zinc-400">
+                <span>GULSHAN KUMAR</span>
+                <span className="text-cyan-400 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  ACTIVE NOW
+                </span>
               </div>
             </div>
-
-            {/* Glowing Ring Effect on Hover */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 via-purple-500 to-emerald-400 opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500 pointer-events-none" />
           </motion.div>
         </motion.div>
       </div>
     </section>
   );
 }
+

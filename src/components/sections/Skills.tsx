@@ -1,46 +1,74 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { Brain, Code, Settings } from "lucide-react";
+import { Brain, Code, Server, Database, Cloud, Terminal } from "lucide-react";
 
 const SKILL_CATEGORIES = [
   {
-    title: "AI & Machine Learning",
+    title: "AI / ML",
     icon: <Brain className="text-cyan-400" size={20} />,
-    description: "Building neural architectures, validation models, and training procedures.",
+    description: "Deep learning models, neural networks, and computer vision architectures.",
     skills: [
       { name: "PyTorch", level: 90 },
       { name: "TensorFlow / Keras", level: 80 },
       { name: "Scikit-Learn", level: 85 },
       { name: "Computer Vision (OpenCV)", level: 80 },
       { name: "NLP & Transformers", level: 75 },
-      { name: "Model Optimization", level: 70 },
     ],
   },
   {
-    title: "Web Development",
+    title: "Frontend",
     icon: <Code className="text-purple-400" size={20} />,
-    description: "Building clean responsive frontends and modular backend infrastructures.",
+    description: "Responsive, premium interactive user interface systems.",
     skills: [
-      { name: "Next.js 14 / 15", level: 85 },
+      { name: "Next.js 15 (Turbopack)", level: 85 },
       { name: "React & TypeScript", level: 90 },
       { name: "Tailwind CSS", level: 95 },
-      { name: "Node.js & Express", level: 80 },
-      { name: "REST APIs / GraphQL", level: 85 },
-      { name: "Three.js / React Three Fiber", level: 65 },
+      { name: "Framer Motion & Three.js", level: 70 },
     ],
   },
   {
-    title: "Languages & Tooling",
-    icon: <Settings className="text-emerald-400" size={20} />,
-    description: "Core languages and essential DevOps/development utilities.",
+    title: "Backend",
+    icon: <Server className="text-emerald-400" size={20} />,
+    description: "Scalable server applications and logical API routes.",
     skills: [
-      { name: "Python", level: 95 },
-      { name: "C / C++", level: 85 },
+      { name: "Python (FastAPI / Flask)", level: 95 },
+      { name: "Node.js & Express", level: 80 },
+      { name: "REST APIs & GraphQL", level: 85 },
+      { name: "C / C++ (Core Systems)", level: 85 },
+    ],
+  },
+  {
+    title: "Databases",
+    icon: <Database className="text-blue-400" size={20} />,
+    description: "Relational, document, and cache storage setups.",
+    skills: [
+      { name: "PostgreSQL", level: 85 },
+      { name: "MongoDB", level: 80 },
+      { name: "SQLite", level: 90 },
+      { name: "Redis (Caching)", level: 70 },
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: <Cloud className="text-pink-400" size={20} />,
+    description: "Containerization, cloud services, and build actions.",
+    skills: [
+      { name: "Docker", level: 75 },
+      { name: "AWS (S3 / EC2)", level: 70 },
+      { name: "Vercel / Netlify", level: 90 },
+      { name: "GitHub Actions (CI/CD)", level: 75 },
+    ],
+  },
+  {
+    title: "Tools & Platforms",
+    icon: <Terminal className="text-orange-400" size={20} />,
+    description: "Development environments and command line interfaces.",
+    skills: [
       { name: "Git & GitHub", level: 90 },
-      { name: "Docker", level: 70 },
-      { name: "SQL & Databases", level: 80 },
-      { name: "Linux / Bash scripting", level: 75 },
+      { name: "Linux / Bash Scripting", level: 80 },
+      { name: "ONNX Runtime", level: 75 },
+      { name: "Postman / API Testing", level: 85 },
     ],
   },
 ];

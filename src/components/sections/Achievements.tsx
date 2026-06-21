@@ -7,23 +7,23 @@ const ACHIEVEMENTS = [
   {
     icon: <Code className="text-cyan-400" size={24} />,
     stat: "500+",
-    title: "LeetCode & Platform Problems",
-    context: "Algorithmic Problem Solving",
-    description: "Developed strong competencies in complex data structures and algorithmic designs by solving over 500 tasks spanning graphs, dynamic programming, and systems analysis."
+    title: "LeetCode & Algorithmic Tasks",
+    context: "Data Structures & Algorithms",
+    description: "Solved over 500 advanced programming challenges covering complex graphs, dynamic programming, and dynamic systems analysis, establishing a high code-efficiency rating."
   },
   {
     icon: <Award className="text-purple-400" size={24} />,
     stat: "Top 5%",
-    title: "Hackathon Placement",
-    context: "Regional AI/ML Hackathons",
-    description: "Led development of real-time classification engines under strict timeframe limitations, achieving high rankings in competitive developer hackathons."
+    title: "Hackathon Innovations",
+    context: "NHIDE 2026 & AI Projects",
+    description: "Led development of low-latency model inference wrappers under rigorous time bounds, earning top rankings in competitive coding hackathons."
   },
   {
     icon: <Users className="text-emerald-400" size={24} />,
     stat: "1,000+",
-    title: "Community Reach",
-    context: "GDGC AI/ML Workshops",
-    description: "Helped deliver workshops, technical guidance, and collaborative project materials on AI systems to over 1,000 students and aspiring builders."
+    title: "Community Leadership",
+    context: "GDGC AI/ML Team Member",
+    description: "Delivered technical guides, hands-on model tuning bootcamps, and developer project materials to more than 1,000 campus peers and engineering students."
   }
 ];
 

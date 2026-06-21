@@ -209,7 +209,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     maxLength={100}
-                    placeholder="Enter your name"
+                    placeholder="e.g. Alexander Wright"
                     disabled={isDisabled}
                     className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   />
@@ -227,7 +227,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="Enter your email"
+                    placeholder="e.g. alexander@company.com"
                     disabled={isDisabled}
                     className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   />
@@ -247,7 +247,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   maxLength={200}
-                  placeholder="Enter the subject"
+                  placeholder="e.g. AI/ML Internship Opportunity"
                   disabled={isDisabled}
                   className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 />
@@ -266,7 +266,7 @@ export default function Contact() {
                   required
                   rows={5}
                   maxLength={5000}
-                  placeholder="Tell me about your project or role..."
+                  placeholder="Please provide details about the project requirements, internship roles, or collaboration opportunities..."
                   disabled={isDisabled}
                   className="px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:bg-zinc-900 transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                 />

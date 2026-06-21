@@ -7,7 +7,7 @@ import * as THREE from "three";
 export default function ParticleGalaxy() {
   const pointsRef = useRef<THREE.Points>(null);
 
-  const count = 4000;
+  const count = 1000;
   const { positions, colors } = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -54,11 +54,11 @@ export default function ParticleGalaxy() {
   return (
     <points ref={pointsRef} geometry={geometry}>
       <pointsMaterial
-        size={0.04}
+        size={0.035}
         sizeAttenuation={true}
         vertexColors={true}
         transparent={true}
-        opacity={0.45}
+        opacity={0.25}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
       />

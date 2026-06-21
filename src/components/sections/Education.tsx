@@ -7,7 +7,7 @@ const EDUCATION_DETAILS = [
   {
     degree: "Bachelor of Technology (B.Tech)",
     major: "Information Technology",
-    institution: "Your University Name [Placeholder]", // Change this value to your university
+    institution: "Guru Ghasidas Vishwavidyalaya (A Central University)",
     period: "2023 - 2027",
     gpa: "9.2/10 CGPA (Expected)",
     highlights: [

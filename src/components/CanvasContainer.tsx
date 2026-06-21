@@ -5,7 +5,7 @@ import ParticleGalaxy from "./ParticleGalaxy";
 
 export default function CanvasContainer() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none opacity-45">
+    <div className="fixed inset-0 z-0 pointer-events-none opacity-20">
       <Canvas
         camera={{ position: [0, 0, 7], fov: 60 }}
         dpr={[1, 1.5]}

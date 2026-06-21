@@ -98,15 +98,15 @@ export default function About() {
               </div>
 
               <p className="text-zinc-400 leading-relaxed mb-6 font-normal">
-                I am a dedicated AI/ML developer and software engineer with a strong focus on building premium web technologies and training highly accurate neural models. I enjoy solving complex problems at the intersection of deep learning algorithms and scalable architectures.
+                I am a B.Tech Information Technology student at <strong className="text-white">Guru Ghasidas Vishwavidyalaya (GGV)</strong>, a Central University, with a deep interest in artificial intelligence, deep learning frameworks, and robust systems software. I thrive on solving complex, data-driven challenges and translating academic models into functional, production-ready code.
               </p>
 
               <p className="text-zinc-400 leading-relaxed mb-6 font-normal">
-                Through my participation as an active <strong className="text-zinc-300">AI/ML Team Member at GDGC</strong>, I collaborate on building modern intelligent solutions. My experience ranges from crafting document fraud detection models to constructing optimized desktop systems.
+                As a passionate problem solver and hackathon competitor, I enjoy working in collaborative engineering teams. My current role as an <strong className="text-zinc-200">AI/ML Team Member at GDGC</strong> allows me to design and develop real-world machine learning solutions while hosting community learning events.
               </p>
 
               <p className="text-zinc-400 leading-relaxed font-normal">
-                I strive to build clean, modular code bases that deliver unmatched user experiences, combined with powerful backend intelligence. I love working in collaborative environments that push technical boundaries.
+                From coding tampering classifiers in PyTorch for <strong className="text-cyan-400">VeriLex AI</strong>, to engineering C++ pipelines for <strong className="text-purple-400">NHIDE 2026</strong>, my focus remains on building performant, modular systems that address practical industry problems.
               </p>
             </div>
 
@@ -116,12 +116,12 @@ export default function About() {
                 <span className="text-zinc-300 font-medium mt-1 block">India</span>
               </div>
               <div>
-                <span className="text-zinc-500 font-semibold block uppercase tracking-wider text-[11px]">Primary Role</span>
-                <span className="text-zinc-300 font-medium mt-1 block">AI/ML Developer</span>
+                <span className="text-zinc-500 font-semibold block uppercase tracking-wider text-[11px]">Primary Focus</span>
+                <span className="text-zinc-300 font-medium mt-1 block">AI/ML & Systems</span>
               </div>
               <div>
                 <span className="text-zinc-500 font-semibold block uppercase tracking-wider text-[11px]">Education</span>
-                <span className="text-zinc-300 font-medium mt-1 block">Computer Science Engineering</span>
+                <span className="text-zinc-300 font-medium mt-1 block">B.Tech IT, GGV (Central University)</span>
               </div>
             </div>
           </motion.div>
