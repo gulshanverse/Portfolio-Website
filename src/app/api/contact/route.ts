@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const TO_EMAIL = "gulshankumaritggv@gmail.com";
 const FROM_EMAIL = "Portfolio Contact <onboarding@resend.dev>";
 
@@ -153,6 +151,7 @@ export async function POST(req: NextRequest) {
     }
 
     // ── Send email via Resend ─────────────────────────────────────────────────
+    const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
     const { error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: [TO_EMAIL],
