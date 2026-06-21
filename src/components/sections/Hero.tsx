@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { Download, ArrowRight, Mail, Cpu } from "lucide-react";
+import Image from "next/image";
 
 const GithubIcon = ({ size = 18, className = "" }: { size?: number; className?: string }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -100,7 +101,7 @@ export default function Hero() {
             <span className="text-xs tracking-widest text-zinc-500 uppercase font-semibold">Follow Me:</span>
             <div className="flex gap-3">
               <a
-                href="https://github.com"
+                href="https://github.com/gulshanverse"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-full border border-zinc-800/60 glass-panel text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-110 transition-all duration-300"
@@ -109,7 +110,7 @@ export default function Hero() {
                 <GithubIcon size={18} />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/gulshanverse"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-full border border-zinc-800/60 glass-panel text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-110 transition-all duration-300"
@@ -118,7 +119,7 @@ export default function Hero() {
                 <LinkedinIcon size={18} />
               </a>
               <a
-                href="mailto:contact@gulshankumar.com"
+                href="mailto:gulshankumaritggv@gmail.com"
                 className="p-2.5 rounded-full border border-zinc-800/60 glass-panel text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:scale-110 transition-all duration-300"
                 aria-label="Email"
               >
@@ -128,61 +129,41 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right side interactive terminal graphic */}
+        {/* Right side Profile Image */}
         <motion.div
-          className="lg:col-span-5 relative"
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          className="lg:col-span-5 flex justify-center items-center relative"
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+          transition={{ duration: 0.8, delay: 0.4, type: "spring" as const }}
         >
-          {/* Ring light background */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-purple-500/10 rounded-2xl blur-3xl -z-10 pointer-events-none" />
+          {/* Outer glow effect */}
+          <div className="absolute w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-tr from-cyan-500/10 to-purple-500/10 rounded-full blur-[80px] opacity-40 pointer-events-none animate-pulse-slow" />
 
-          {/* Futuristic Terminal Card */}
-          <div className="glass-panel border-zinc-800/60 rounded-2xl overflow-hidden shadow-2xl">
-            {/* Window bar */}
-            <div className="bg-zinc-900/60 border-b border-zinc-800/40 px-4 py-3 flex items-center justify-between">
-              <div className="flex gap-2">
-                <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-              </div>
-              <span className="text-[10px] text-zinc-500 font-mono tracking-widest uppercase">verilex-agent.py</span>
-              <span className="w-4" />
-            </div>
-
-            {/* Code content */}
-            <div className="p-5 font-mono text-[12px] leading-relaxed text-zinc-300 overflow-x-auto min-h-[300px]">
-              <div className="text-zinc-500 mb-2"># Initializing Neural Net Training</div>
-              <div><span className="text-purple-400">import</span> torch</div>
-              <div><span className="text-purple-400">import</span> verilex_models <span className="text-purple-400">as</span> vm</div>
-              <div className="mt-2 text-zinc-500"># Config settings</div>
-              <div>device = <span className="text-cyan-400">&quot;cuda&quot;</span> <span className="text-purple-400">if</span> torch.cuda.is_available() <span className="text-purple-400">else</span> <span className="text-cyan-400">&quot;cpu&quot;</span></div>
-              <div>model = vm.VeriLexEncoder().to(device)</div>
-              <div>optimizer = torch.optim.AdamW(model.parameters(), lr=<span className="text-amber-400">2e-4</span>)</div>
-              
-              <div className="mt-4 text-zinc-500"># Training loop logs</div>
-              <div>&gt;&gt;&gt; loading dataset: document_verification_corpus... Done.</div>
-              <div>&gt;&gt;&gt; training started on: <span className="text-emerald-400">NVIDIA RTX 4080</span></div>
-              <div className="flex items-center gap-2 mt-2">
-                <span className="text-cyan-400 font-bold">[Epoch 42/100]</span>
-                <span className="text-zinc-400">loss:</span>
-                <span className="text-emerald-400">0.0384</span>
-                <span className="text-zinc-400">val_acc:</span>
-                <span className="text-emerald-400">99.2%</span>
-              </div>
-              <div className="w-full bg-zinc-900 rounded-full h-[6px] mt-2 overflow-hidden">
-                <motion.div 
-                  className="bg-gradient-to-r from-cyan-400 to-purple-500 h-full"
-                  initial={{ width: "0%" }}
-                  animate={{ width: "78%" }}
-                  transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+          {/* Interactive Profile Card Wrapper */}
+          <motion.div 
+            className="relative group p-[4px] rounded-full bg-gradient-to-tr from-cyan-400 via-purple-500 to-emerald-400 shadow-[0_0_50px_rgba(6,182,212,0.15)] hover:shadow-[0_0_60px_rgba(139,92,246,0.3)] transition-all duration-500"
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            {/* Inner frame */}
+            <div className="bg-zinc-950 p-[4px] rounded-full overflow-hidden">
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden">
+                <Image
+                  src="/profile.jpg"
+                  alt="Gulshan Kumar"
+                  width={350}
+                  height={350}
+                  priority
+                  className="rounded-full object-cover object-center w-full h-full scale-[1.02] group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
+                  quality={95}
                 />
               </div>
-
-              <div className="mt-4 text-cyan-400/80 animate-pulse">&gt;&gt;&gt; system state: optimizing learning rate scheduler...</div>
             </div>
-          </div>
+
+            {/* Glowing Ring Effect on Hover */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 via-purple-500 to-emerald-400 opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500 pointer-events-none" />
+          </motion.div>
         </motion.div>
       </div>
     </section>

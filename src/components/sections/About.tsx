@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { User, BookOpen, Brain, Terminal } from "lucide-react";
+import Image from "next/image";
 
 const HIGHLIGHTS = [
   {
@@ -54,9 +55,33 @@ export default function About() {
 
         {/* Content Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-          {/* Left Text Intro Box */}
+          {/* Profile Image Box */}
           <motion.div
-            className="lg:col-span-7 flex flex-col justify-between glass-panel border-zinc-800/60 p-8 rounded-2xl relative overflow-hidden"
+            className="lg:col-span-4 flex justify-center items-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInVariants}
+          >
+            <div className="relative group p-[3px] rounded-2xl bg-gradient-to-tr from-cyan-500 to-purple-500 shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.25)] transition-all duration-500 w-full max-w-[320px] aspect-square">
+              {/* Inner container */}
+              <div className="bg-zinc-950 p-2 rounded-[13px] overflow-hidden w-full h-full relative">
+                <Image
+                  src="/profile.jpg"
+                  alt="Gulshan Kumar Profile"
+                  width={300}
+                  height={300}
+                  className="rounded-[10px] object-cover object-center w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 1024px) 280px, 300px"
+                  quality={95}
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Text Intro Box */}
+          <motion.div
+            className="lg:col-span-8 flex flex-col justify-between glass-panel border-zinc-800/60 p-8 rounded-2xl relative overflow-hidden"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -100,35 +125,35 @@ export default function About() {
               </div>
             </div>
           </motion.div>
+        </div>
 
-          {/* Right Highlights Cards */}
-          <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
-            {HIGHLIGHTS.map((item, index) => (
-              <motion.div
-                key={item.title}
-                className="glass-panel glass-panel-hover border-zinc-800/60 p-6 rounded-2xl flex gap-5 items-start"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={{
-                  hidden: { opacity: 0, x: 30 },
-                  visible: {
-                    opacity: 1,
-                    x: 0,
-                  },
-                }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="p-3 bg-zinc-900/80 rounded-xl border border-zinc-800 flex-shrink-0">
-                  {item.icon}
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-white text-base mb-1">{item.title}</h4>
-                  <p className="text-zinc-400 text-sm leading-relaxed">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        {/* Highlights Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          {HIGHLIGHTS.map((item, index) => (
+            <motion.div
+              key={item.title}
+              className="glass-panel glass-panel-hover border-zinc-800/60 p-6 rounded-2xl flex gap-5 items-start"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                },
+              }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="p-3 bg-zinc-900/80 rounded-xl border border-zinc-800 flex-shrink-0">
+                {item.icon}
+              </div>
+              <div>
+                <h4 className="font-display font-bold text-white text-base mb-1">{item.title}</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
