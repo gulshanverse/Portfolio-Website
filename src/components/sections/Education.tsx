@@ -8,8 +8,8 @@ const EDUCATION_DETAILS = [
     degree: "Bachelor of Technology (B.Tech)",
     major: "Information Technology",
     institution: "Guru Ghasidas Vishwavidyalaya (A Central University)",
-    period: "2023 - 2027",
-    gpa: "9.2/10 CGPA (Expected)",
+    period: "2024 - 2028",
+    gpa: "8.75/10 CGPA (Till 4th Sem)",
     highlights: [
       "Specialization tracks: Advanced Deep Learning, Data Structures & Algorithms, Systems Architecture.",
       "Active organizer and developer for regional student coding networks.",

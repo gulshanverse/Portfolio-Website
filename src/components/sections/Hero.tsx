@@ -96,10 +96,8 @@ export default function Hero() {
             </a>
 
             <a
-              href="/Gulshan_Kumar_Resume.pdf"
+              href="/GulshanKumarResume.pdf"
               download="Gulshan_Kumar_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-800 bg-zinc-900/60 text-white font-bold hover:border-zinc-700 hover:bg-zinc-900 hover:scale-[1.02] transition-all duration-300 active:scale-[0.98]"
             >
               Download Resume <Download size={16} />
